@@ -14,7 +14,7 @@ inline elelel::cv_lock::cv_lock(std::mutex& mutex,
   }
 }
 
-// Copy constructor that shelelel mutex/cv with copies.
+// Copy constructor that shares mutex/cv with copies.
 inline elelel::cv_lock::cv_lock(const cv_lock& other) :
   mutex_(other.mutex_),
   cv_(other.cv_),
