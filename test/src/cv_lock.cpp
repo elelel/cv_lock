@@ -4,12 +4,11 @@
 #include <chrono>
 #include <thread>
 
-#include "../../src/cv_lock.hpp"
-#include "../../src/definition/cv_lock.hpp"
+#include "../../include/elelel/cv_lock"
 
 SCENARIO("Test cv_lock with copy constructor") {
-        using namespace std::chrono_literals;
-        std::mutex mutex;
+  using namespace std::chrono_literals;
+  std::mutex mutex;
   std::condition_variable cv;
   bool locked{false};
   ares::cv_lock lock(mutex, cv, locked);
