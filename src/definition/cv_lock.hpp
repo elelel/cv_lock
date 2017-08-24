@@ -2,7 +2,7 @@
 
 #include "../cv_lock.hpp"
 
-inline ares::cv_lock::cv_lock(std::mutex& mutex,
+inline elelel::cv_lock::cv_lock(std::mutex& mutex,
                               std::condition_variable& cv,
                               bool& locked) :
   mutex_(mutex),
@@ -14,8 +14,8 @@ inline ares::cv_lock::cv_lock(std::mutex& mutex,
   }
 }
 
-// Copy constructor that shares mutex/cv with copies.
-inline ares::cv_lock::cv_lock(const cv_lock& other) :
+// Copy constructor that shelelel mutex/cv with copies.
+inline elelel::cv_lock::cv_lock(const cv_lock& other) :
   mutex_(other.mutex_),
   cv_(other.cv_),
   lock_(std::move(std::unique_lock<std::mutex>(mutex_, std::defer_lock))),
@@ -25,20 +25,20 @@ inline ares::cv_lock::cv_lock(const cv_lock& other) :
   }
 }  
 
-inline void ares::cv_lock::wait_and_lock() {
+inline void elelel::cv_lock::wait_and_lock() {
   cv_.wait(lock_, [this] { return !locked_; });
   lock_.lock();
   locked_ = true;
 }
 
-inline void ares::cv_lock::unlock() {
+inline void elelel::cv_lock::unlock() {
   locked_ = false;
   lock_.unlock();
   cv_.notify_one();
 }
 
 template <typename F>
-inline void ares::cv_lock::with_lock(F f) {
+inline void elelel::cv_lock::with_lock(F f) {
   wait_and_lock();
   try {
     f();
@@ -50,7 +50,7 @@ inline void ares::cv_lock::with_lock(F f) {
 }
 
 template <typename Result, typename F>
-inline Result ares::cv_lock::with_lock_as(F f) {
+inline Result elelel::cv_lock::with_lock_as(F f) {
   Result rslt;
   wait_and_lock();
   try {

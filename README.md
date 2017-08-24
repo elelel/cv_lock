@@ -10,12 +10,12 @@
   std::mutex mutex;
   std::condition_variable cv;
   bool locked{false};
-  ares::cv_lock lock(mutex, cv, locked);
+  elelel::cv_lock lock(mutex, cv, locked);
   
   int var = 2;
   std::atomic<bool> terminated{false};
   auto mutate_var = [&var, &lock, &terminated] () {
-    auto local_lock = ares::cv_lock(lock);
+    auto local_lock = elelel::cv_lock(lock);
     while (!terminated) {
       try {
         local_lock.wait_and_lock();
