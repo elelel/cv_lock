@@ -1,6 +1,11 @@
 # Simple and copyable condition_variable-based lock
 
+
+
 ```c++
+#include <elelel/cv_lock>
+
+// .....
   using namespace std::chrono_literals;
   std::mutex mutex;
   std::condition_variable cv;
